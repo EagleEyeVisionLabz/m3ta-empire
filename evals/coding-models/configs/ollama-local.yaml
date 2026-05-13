@@ -1,0 +1,45 @@
+name: ollama-local
+seed: 0
+output_dir: ../results
+
+# Talks to a local Ollama server at the default port.
+# Pull the model first, e.g.: `ollama pull hermes3:14b` or `ollama pull qwen3-coder`.
+backend:
+  kind: ollama
+  params:
+    model: hermes3:14b
+    base_url: http://127.0.0.1:11434
+    temperature: 0.2
+    num_ctx: 32000
+
+tasks:
+  - kind: vision-to-code
+    fixtures: ../fixtures/vision
+    params:
+      reasoning: medium
+      max_tokens: 4096
+      timeout_s: 120
+
+  - kind: refactor
+    fixtures: ../fixtures/refactor
+    params:
+      reasoning: medium
+      max_tokens: 8192
+      timeout_s: 180
+      run_tests: true
+
+  - kind: long-context
+    fixtures: ../fixtures/long_context
+    params:
+      reasoning: low
+      max_tokens: 512
+      timeout_s: 120
+
+  - kind: reliability
+    fixtures: ../fixtures/reliability
+    params:
+      runs_per_task: 2
+      min_success_rate: 0.6
+      reasoning: medium
+      max_tokens: 6000
+      timeout_s: 120
