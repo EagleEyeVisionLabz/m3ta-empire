@@ -6,6 +6,7 @@ Public scaffolding for the **M3ta-0s** agent architecture: a Hermes-Agent-kernel
 
 | Path | Purpose |
 | --- | --- |
+| `docs/` | M3ta-0s operator runbooks (e.g., `swap-default-model.md`) |
 | `evals/coding-models/` | Model-agnostic eval harness for coding-model candidates considered for M3ta-0s routing |
 
 The `m3ta-mcp` server and the Hermes kernel routing config land in their own directories as the project grows.
