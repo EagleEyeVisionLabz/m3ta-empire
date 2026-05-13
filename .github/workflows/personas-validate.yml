@@ -1,0 +1,34 @@
+name: personas-validate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - "apps/qu3bii-dashboard/src/personas/**"
+      - "core/m3ta-os/personas/**"
+      - "integrations/lyzr/personas/**"
+      - "core/m3ta-os/src/persona-registry.ts"
+      - "scripts/validate-personas.py"
+      - ".github/workflows/personas-validate.yml"
+
+jobs:
+  validate:
+    name: Load every persona via the registry
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install validator deps
+        run: pip install --quiet pyyaml
+
+      - name: Validate personas
+        env:
+          # Stub the Lyzr pointer so backend="lyzr" personas pass validation
+          # in CI. Replace per-env in production .env.
+          LYZR_AGENT_COACH_ID: ci-stub-agt-id
+        run: python3 scripts/validate-personas.py
