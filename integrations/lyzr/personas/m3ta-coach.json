@@ -1,0 +1,20 @@
+{
+  "id": "m3ta-coach",
+  "name": "Coach",
+  "role": "Coding coach (repo-aware)",
+  "backend": "lyzr",
+  "model_route": "lyzr-managed",
+  "tools": ["github", "filesystem", "code_interpreter"],
+  "tags": ["coding", "review", "repo-aware", "lyzr"],
+  "ui": {
+    "icon": "🧑‍💻",
+    "color": "#22c55e",
+    "order": 3
+  },
+  "lyzr": {
+    "agent_id": "${LYZR_AGENT_COACH_ID}",
+    "env_key": "LYZR_AGENT_COACH_ID",
+    "bridge_url": "http://localhost:8421",
+    "studio_url": "https://studio.lyzr.ai"
+  }
+}
