@@ -1,0 +1,41 @@
+name: mock-smoke
+seed: 0
+output_dir: ../results
+
+backend:
+  kind: mock
+  params:
+    default_response: |
+      <!DOCTYPE html><html><body><main class="hero"><button>Get started</button></main></body></html>
+    responses:
+      "You are refactoring": |
+        {"files": {"src/index.ts": "export function add(a, b) { return (a as any) + (b as any); }"}}
+      "Below is a long corpus": |
+        the-secret-word-is-OPAL
+    latency_ms: 1
+    fail_on: []
+
+tasks:
+  - kind: vision-to-code
+    fixtures: ../fixtures/vision
+    params:
+      max_tokens: 2048
+
+  - kind: refactor
+    fixtures: ../fixtures/refactor
+    params:
+      run_tests: false
+      max_tokens: 4096
+
+  - kind: long-context
+    fixtures: ../fixtures/long_context
+    params:
+      positions: [0.1]
+      max_tokens: 256
+
+  - kind: reliability
+    fixtures: ../fixtures/reliability
+    params:
+      runs_per_task: 1
+      min_success_rate: 0.5
+      max_tokens: 1024

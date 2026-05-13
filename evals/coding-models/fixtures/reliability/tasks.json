@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "id": "movie-tracker",
+      "prompt": "Build a single-file HTML+JS movie-tracker web app. Users add movies via an input box, mark them as watched, and the list persists in localStorage. No external libraries. Return only the HTML.",
+      "max_tokens": 6000
+    },
+    {
+      "id": "calculator-ui",
+      "prompt": "Render a 4-function calculator as a single HTML file with inline CSS. The digit, operator, equals, and clear buttons must be on a tidy 4-column grid. Inline JS handles the arithmetic. Return only the HTML.",
+      "max_tokens": 6000
+    },
+    {
+      "id": "todo-with-step-counter",
+      "prompt": "Extend the following minimal todo app to add a step counter that increments on each completed task, plus a life bar that loses one heart when a task is removed within 1 second of being added. Keep the file self-contained. Starter:\n\n<html><body><ul id=\\\"todos\\\"></ul><input id=\\\"new-todo\\\"/><button id=\\\"add\\\">Add</button><script>const ul=document.getElementById('todos');document.getElementById('add').onclick=()=>{const i=document.getElementById('new-todo');const li=document.createElement('li');li.textContent=i.value;ul.appendChild(li);i.value='';};</script></body></html>",
+      "max_tokens": 6000
+    }
+  ]
+}

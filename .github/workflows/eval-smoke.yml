@@ -1,0 +1,40 @@
+name: eval-smoke
+
+on:
+  pull_request:
+    paths:
+      - "evals/coding-models/**"
+      - ".github/workflows/eval-smoke.yml"
+  push:
+    branches: [main]
+    paths:
+      - "evals/coding-models/**"
+      - ".github/workflows/eval-smoke.yml"
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: evals/coding-models
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install harness
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e ".[dev]"
+
+      - name: Lint
+        run: ruff check harness tests
+
+      - name: Unit tests
+        run: pytest -q
+
+      - name: Mock-backend smoke run
+        run: python -m harness.runner --config configs/mock.yaml

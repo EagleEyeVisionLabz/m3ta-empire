@@ -1,0 +1,7 @@
+{
+  "name": "single-button-page",
+  "brief": "Render this single-button landing page as HTML+CSS. Use a centered hero with one bold call-to-action button. Inline the CSS.",
+  "image": "single-button-page.png",
+  "reference_html": "single-button-page.expected.html",
+  "min_score": 0.4
+}

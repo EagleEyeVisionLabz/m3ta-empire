@@ -1,0 +1,4 @@
+{
+  "min_passing_tests": 2,
+  "notes": "Both the existing numeric test and the new string-concatenation test must pass."
+}
