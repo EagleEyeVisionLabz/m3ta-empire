@@ -1,0 +1,13 @@
+# .github/CODEOWNERS
+# Owners for m3ta-empire - M3ta-0s monorepo.
+# Order matters: later patterns override earlier ones.
+
+.github/workflows/  @EagleEyeVisionLabz
+apps/               @EagleEyeVisionLabz
+core/               @EagleEyeVisionLabz
+docs/               @EagleEyeVisionLabz
+evals/              @EagleEyeVisionLabz
+integrations/       @EagleEyeVisionLabz
+launchagents/       @EagleEyeVisionLabz
+scripts/            @EagleEyeVisionLabz
+*                   @EagleEyeVisionLabz
