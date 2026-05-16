@@ -1,0 +1,52 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/mcp-client-config.json",
+  "comment": "MCP endpoint stubs for build-adapter. URLs are local-loopback defaults; override per environment via the matching M3TA_MCP_*_URL variable.",
+  "mcpServers": {
+    "notion": {
+      "url": "http://localhost:7710",
+      "transport": "sse",
+      "envFromHost": [
+        "NOTION_API_KEY",
+        "NOTION_TASK_DATABASE_ID"
+      ],
+      "scopes": ["read:pages", "write:pages", "read:databases", "write:databases"]
+    },
+    "slack": {
+      "url": "http://localhost:7711",
+      "transport": "sse",
+      "envFromHost": [
+        "SLACK_BOT_TOKEN",
+        "SLACK_ALERT_CHANNEL"
+      ],
+      "scopes": ["chat:write", "channels:read"]
+    },
+    "attio": {
+      "url": "http://localhost:7712",
+      "transport": "sse",
+      "envFromHost": [
+        "ATTIO_API_KEY",
+        "ATTIO_WORKSPACE_ID"
+      ],
+      "scopes": ["records:read", "records:write"]
+    },
+    "obsidian": {
+      "url": "http://localhost:7713",
+      "transport": "stdio",
+      "envFromHost": [
+        "OBSIDIAN_VAULT_PATH"
+      ],
+      "scopes": ["fs:read", "fs:append"]
+    }
+  },
+  "router": {
+    "classifierPath": "router/task-classifier.ts",
+    "modelRouteHintField": "model_route_hint",
+    "litellmBaseUrl": "http://localhost:4000/v1",
+    "defaultRoute": "m3ta-code"
+  },
+  "session": {
+    "scratchDir": "/tmp/build-adapter",
+    "logRetentionDays": 7,
+    "outputContractVersion": "1"
+  }
+}
